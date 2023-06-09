@@ -15,11 +15,33 @@ const PostSubCategory = async (req, res) => {
 }
 
 const PatchSubCategory = async (req, res) => {
-
+    const id = req.params.id
+    try {
+        const subcategory = await Subcategory.findByIdAndUpdate(id, req.params, {
+            runValidators: true,
+            new: true
+        })
+        if (!subcategory) {
+            return res.status(404).send('subcategory not found')
+        }
+        res.status(200).send({ data: subcategory })
+    } catch (e) {
+        res.status(200).send(e.message)
+    }
 }
 
 const DeleteSubCategory = async (req, res) => {
-
+    try {
+        const id = req.params.id
+        const subcategory = await Subcategory.findByIdAndDelete({ _id: id })
+        if (!subcategory) {
+            res.status(404).send('subcategory not found')
+        } else {
+            res.status(200).send('subcategory is deleted')
+        }
+    } catch (error) {
+        res.status(500).send(error)
+    }
 }
 
 

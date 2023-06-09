@@ -1,7 +1,12 @@
 const Category = require("../models/categoryModel")
 
 const getCategory = async (req, res) => {
-
+    try {
+        const category = await Category.find()
+        res.status(200).send({ data: category })
+    } catch (e) {
+        res.status(400).send({ msg: e.message })
+    }
 }
 
 const PostCategory = async (req, res) => {

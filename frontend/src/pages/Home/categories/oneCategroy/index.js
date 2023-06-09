@@ -1,9 +1,10 @@
 import React from 'react'
 import './style.scss'
 
-const OneCategory = ({ title, photo }) => {
+const OneCategory = ({ title, photo, onClick }) => {
     return (
         <div className='OneCategory'
+            onClick={onClick}
             style={{
                 backgroundImage: `url(${photo})`,
                 backgroundSize: 'cover',
