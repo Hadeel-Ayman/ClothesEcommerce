@@ -21,14 +21,12 @@ const Category = () => {
 
 
 
-    const handleClick = () => {
-        
-    }
+
     return (
         <div className='category'>
             <h3>Shop Our Top Categories</h3>
             <div className='flex'>
-                <OneCategory title={'Furniture'} photo={fur} onClick={handleClick} />
+                <OneCategory title={'Furniture'} photo={fur} />
                 <OneCategory title={'Hand Bag'} photo={bag} />
                 <OneCategory title={'Books'} photo={book} />
                 <OneCategory title={'Tech'} photo={labtop} />
