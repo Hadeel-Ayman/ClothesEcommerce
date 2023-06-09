@@ -1,0 +1,29 @@
+.contnent {
+  padding: 250px 0 0 30px;
+  line-height: 40px;
+
+  h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+  p {
+    color: #777676;
+    font-size: 20px;
+  }
+
+  button {
+    width: 170px;
+    padding: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 17px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    border-radius: 30px;
+
+    &:hover {
+      background-color: #f7c6e4;
+    }
+  }
+}
