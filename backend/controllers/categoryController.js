@@ -21,11 +21,33 @@ const PostCategory = async (req, res) => {
 
 
 const PatchCategory = async (req, res) => {
-
+    const id = req.params.id
+    try {
+        const category = await Category.findByIdAndUpdate(id, req.params, {
+            runValidators: true,
+            new: true
+        })
+        if (!category) {
+            return res.status(404).send('category not found')
+        }
+        res.status(200).send({ data: category })
+    } catch (e) {
+        res.status(200).send(e.message)
+    }
 }
 
 const Deletecategory = async (req, res) => {
-
+    try {
+        const id = req.params.id
+        const category = await Category.findByIdAndDelete({ _id: id })
+        if (!category) {
+            res.status(404).send('category not found')
+        } else {
+            res.status(200).send('category is deleted')
+        }
+    } catch (error) {
+        res.status(500).send(error)
+    }
 }
 
 
