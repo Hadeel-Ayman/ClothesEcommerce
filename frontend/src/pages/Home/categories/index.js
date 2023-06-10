@@ -20,8 +20,6 @@ const Category = () => {
     })
 
 
-
-
     return (
         <div className='category'>
             <h3>Shop Our Top Categories</h3>
