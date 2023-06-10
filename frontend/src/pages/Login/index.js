@@ -42,6 +42,7 @@ const Login = () => {
             if (fetchData.ok) {
                 localStorage.setItem('jwtToken', res.token);
                 setToken(res.token);
+                navigate('/')
             } else {
                 console.log(res.error);
             }
