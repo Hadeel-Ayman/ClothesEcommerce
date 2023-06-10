@@ -20,17 +20,17 @@ const Register = () => {
 
   const [state, dispatch] = useReducer(reducer1, initalstate1);
 
-  const data = {
-    username: state.username,
-    password: state.password,
-    email: state.email,
-  };
+  // const data = {
+  const username = state.username;
+  const password = state.password;
+  const email = state.email;
+  // };
 
   useEffect(() => {
     const getData = localStorage.getItem('user')
-    if (getData) {
-      navigate('/')
-    }
+    // if (getData) {
+    //   navigate('/')
+    // }
   })
 
   const handleSubmit = async (e) => {
@@ -38,14 +38,18 @@ const Register = () => {
     try {
       let fetchData = await fetch(`${Localhost}/register`, {
         method: "post",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: JSON.stringify([username, password, email]),
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
       });
       let res = await fetchData.json();
       localStorage.setItem("user", JSON.stringify(res));
-      navigate("/");
+      if (res) {
+        navigate("/");
+      } else {
+        navigate("/login");
+      }
       console.log(res);
     } catch (e) {
       dispatch({ type: "error", value: e });

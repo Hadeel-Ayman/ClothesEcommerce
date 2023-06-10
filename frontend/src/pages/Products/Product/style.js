@@ -15,7 +15,7 @@ const Info = styled.div`
   transition: all 0.5s ease;
   cursor: pointer;
 `;
-
+ export const H1 = styled.h1``;
 const Container = styled.div`
   margin: 5px;
   min-width: 280px;
