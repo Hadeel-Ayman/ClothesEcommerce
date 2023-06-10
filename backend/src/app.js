@@ -8,8 +8,8 @@ app.get('/', (req, res) => {
 })
 
 app.use(express.json())
-app.use(cors())
 require('../db/mogoose')
+app.use(cors())
 
 const AuthRouter = require('../routes/authRoutes')
 app.use(AuthRouter)

@@ -20,17 +20,15 @@ const Register = () => {
 
   const [state, dispatch] = useReducer(reducer1, initalstate1);
 
-  // const data = {
   const username = state.username;
   const password = state.password;
   const email = state.email;
-  // };
 
   useEffect(() => {
     const getData = localStorage.getItem('user')
-    // if (getData) {
-    //   navigate('/')
-    // }
+    if (getData) {
+      navigate('/')
+    }
   })
 
   const handleSubmit = async (e) => {
@@ -38,19 +36,20 @@ const Register = () => {
     try {
       let fetchData = await fetch(`${Localhost}/register`, {
         method: "post",
-        body: JSON.stringify([username, password, email]),
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
+        body: JSON.stringify({username, password, email}),
+        headers:{
+          "Content-Type": "application/json"
+        }
       });
+
       let res = await fetchData.json();
-      localStorage.setItem("user", JSON.stringify(res));
-      if (res) {
-        navigate("/");
+      if (fetchData.ok) {
+        localStorage.setItem("user", JSON.stringify(res));
+        navigate('/')
       } else {
-        navigate("/login");
+        console.log(res.error)
       }
-      console.log(res);
+
     } catch (e) {
       dispatch({ type: "error", value: e });
     }
@@ -115,7 +114,7 @@ const Register = () => {
         <button type="submit" className="submit">
           Register
         </button>
-        {state.error && state.error}
+        {/* {state.error && state.error} */}
         <hr />
         <Not title={"Already a member"} ques={"Sign In"} href={"/login"} />
       </form>
